@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 public class Metodos {
     
    
-     
+
      public static ArrayList <Alumno> recogerAlumnos(){
        ArrayList <Alumno> alumnos= Conexion.mostrarAlumnos();
        return alumnos;

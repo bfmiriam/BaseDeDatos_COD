@@ -12,6 +12,10 @@ public class Conexion {
     static String url = "/home/sphynx/mibd.bd";
     static Connection connect;
 
+    /*
+    conecta con la base de datos
+    le pasamos por parámetro la url de la base a la que queremos acceder
+    */
     public static void conectar() {
         try {
             Class.forName("org.sqlite.JDBC");
@@ -20,7 +24,9 @@ public class Conexion {
             System.out.println("Error en la conexión de la base de datos");
         }
     }
-    
+    /*
+    cerramos la conexion con la base de datos
+    */
     public static void pechar() {
         try {
             connect.close();
@@ -28,7 +34,10 @@ public class Conexion {
             System.out.println("Error al cerrar la conexión");
         }
     }
-
+    /*
+    muestra los alumnos contenidos en la base, nos devuelve un ArrayList de tipo Alumno.
+    Instanciamos en el las funciones conectar (al principio del método) y pechar(al final).
+      */
     public static ArrayList<Alumno> mostrarAlumnos() {
 
         ArrayList<Alumno> alumnos = new ArrayList();
@@ -48,7 +57,9 @@ public class Conexion {
         pechar();
         return alumnos;
     }
-
+    /*
+    recibe de la interfaz la informacion correspondiente a un nuevo alumno y la introduce en la base de datos
+    */
     public static void guardarAlumno(Alumno alumno) {
         
         conectar();
@@ -67,6 +78,9 @@ public class Conexion {
         }
         pechar();
     }
+    /*
+    borra de la base de datos el alumno que seleccionamos en la tabla
+    */
     public static void borrarAlumno(String dni){
          conectar();   
         try {
@@ -79,6 +93,9 @@ public class Conexion {
         pechar();
 
     }
+    /*
+    Recoge toda la informacion del alumno seleccionado, ya tenga o no modificaciones, y actualiza la base
+    */
     public static void modificarAlumno(Alumno alumno){
         Conexion.conectar();
         try {
@@ -92,6 +109,10 @@ public class Conexion {
         }
        Conexion.pechar();
     }
+    /*
+    Recibe un filtro de busqueda y lo compara con los alumnos contenidos en la base, 
+    te devuelve los alumnos que tengan coincidencias
+    */
     public static ArrayList<Alumno> buscarAlumno(String busqueda){
        
         ArrayList <Alumno> alumnos = new ArrayList();
